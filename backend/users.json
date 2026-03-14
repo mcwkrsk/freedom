@@ -1,0 +1,29 @@
+{
+  "Русский": {
+    "id": "9a803e86c7eefb2d",
+    "username": "Русский",
+    "password_hash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "type": "registered",
+    "can_post": true,
+    "can_upload": true,
+    "registered_at": "2025-09-24T21:41:24.817498"
+  },
+  "stud124381": {
+    "id": "3624fc988af93b5b",
+    "username": "stud124381",
+    "password_hash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "type": "registered",
+    "can_post": true,
+    "can_upload": true,
+    "registered_at": "2025-10-23T23:22:56.117662"
+  },
+  "stud124382": {
+    "id": "6dc0ea8088041bca",
+    "username": "stud124382",
+    "password_hash": "779f8af87c2cec2b75a607540ee673ad464609b4690658296a94a90e5b350499",
+    "type": "registered",
+    "can_post": true,
+    "can_upload": true,
+    "registered_at": "2026-03-10T23:07:35.081873"
+  }
+}
