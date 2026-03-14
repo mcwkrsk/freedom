@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Вход в систему</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Вход в систему</h1>
+        <a href="/" class="button">← Назад к форуму</a>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="username">Имя пользователя:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit">Войти</button>
+        </form>
+
+        <p>Нет аккаунта? <a href="/register">Зарегистрируйтесь</a></p>
+        <p>Или продолжите как <a href="/">гость</a> (можно читать, но нельзя писать)</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,487 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.topic {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.topic h3 {
+    margin-top: 0;
+}
+
+.topic a {
+    text-decoration: none;
+    color: #333;
+}
+
+.topic a:hover {
+    color: #4CAF50;
+}
+
+.topic-preview {
+    margin-top: 10px;
+    color: #666;
+}
+
+.message {
+    border: 1px solid #eee;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.message-content {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.message small {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.button {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.search-form {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+}
+
+.search-form form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 0;
+}
+
+.search-form input[type="text"] {
+    flex: 1;
+    margin: 0;
+}
+
+.search-form button {
+    margin: 0;
+}
+
+.no-results, .no-messages {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+/* Стили для пагинации */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.page-link {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    text-decoration: none;
+    color: #333;
+}
+
+.page-link:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.current-page {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.ellipsis {
+    padding: 5px;
+}
+
+.pagination-info {
+    text-align: center;
+    margin: 10px 0;
+    color: #666;
+    font-style: italic;
+}
+
+/* Стили для форматированного текста */
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+code {
+    background-color: #f1f1f1;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+}
+
+a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.formatting-hint {
+    margin-top: 5px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.topic-actions, .forum-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Стили для таблиц */
+.forum-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.forum-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.forum-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.forum-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.forum-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-example {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+/* Стили для загрузки файлов и вложений */
+.form-group input[type="file"] {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.attachments {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    border-left: 3px solid #4CAF50;
+}
+
+.attachments ul {
+    margin: 5px 0;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.attachments li {
+    margin: 8px 0;
+    padding: 5px;
+    background-color: white;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.attachment-link {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.attachment-link:hover {
+    text-decoration: underline;
+}
+
+.attachments small {
+    color: #666;
+    font-size: 0.8em;
+}
+
+/* Улучшения для форм */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+/* Добавьте в конец style.css */
+.error {
+    color: #d32f2f;
+    background-color: #ffcdd2;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.profile-info {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+
+.auth-actions {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.user-info {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #e8f5e8;
+    border-radius: 4px;
+}
+
+/* Стили для заголовка темы */
+.topic-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #4CAF50;
+}
+
+.topic-header h1 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.topic-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.topic-meta span {
+    display: flex;
+    align-items: center;
+}
+
+.topic-meta .author {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.topic-meta .created {
+    color: #888;
+}
+
+.topic-meta .messages-count {
+    background-color: #4CAF50;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+}
+
+/* Стили для списка тем на главной странице */
+.topic-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.topic-item:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.topic-item .topic-header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.topic-item .topic-header h3 {
+    margin: 0 0 5px 0;
+}
+
+.topic-item .topic-header h3 a {
+    color: #333;
+    text-decoration: none;
+}
+
+.topic-item .topic-header h3 a:hover {
+    color: #4CAF50;
+}
+
+.topic-item .topic-meta {
+    font-size: 0.8em;
+}
+
+.topic-preview {
+    color: #666;
+    line-height: 1.4;
+    max-height: 60px;
+    overflow: hidden;
+}
+
+/* Стили для сообщений */
+.message {
+    border: 1px solid #eee;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    position: relative;
+}
+
+.message::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: #4CAF50;
+    border-radius: 5px 0 0 5px;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.message-author {
+    font-weight: bold;
+    color: #4CAF50;
+    font-size: 1.1em;
+}
+
+.message-time {
+    color: #888;
+    font-size: 0.9em;
+}
+
+.message-content {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}

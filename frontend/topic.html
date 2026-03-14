@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Тема: {{ topic.title }}</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="topic-header">
+            <h1>{{ topic.title }}</h1>
+            <div class="topic-meta">
+                <span class="author">Автор: <strong>{{ topic.author }}</strong></span>
+                <span class="created">Создана: {{ topic.created_at.strftime('%d.%m.%Y в %H:%M') }}</span>
+                <span class="messages-count">Сообщений: {{ topic.messages|length }}</span>
+            </div>
+        </div>
+
+        <div class="user-info">
+            {% if user.type == 'guest' %}
+                <p>Вы вошли как <strong>Гость</strong>.
+                   <a href="/login">Войдите</a> или <a href="/register">зарегистрируйтесь</a> чтобы отвечать в темах.</p>
+            {% else %}
+                <p>Вы вошли как <strong>{{ user.username }}</strong>.
+                   <a href="/profile">Профиль</a> | <a href="/logout">Выйти</a></p>
+            {% endif %}
+        </div>
+
+        <div class="topic-actions">
+            <a href="/" class="button">← Назад к списку тем</a>
+            <a href="/formatting_help.html" class="button" target="_blank">Справка по форматированию</a>
+        </div>
+
+        <div class="pagination-info">
+            <p>Сообщений: {{ topic.messages|length }} | Страница {{ current_page }} из {{ total_pages }}</p>
+        </div>
+
+        {% if total_pages > 1 %}
+        <div class="pagination">
+            {% if current_page > 1 %}
+                <a href="/topic/{{ topic.id }}?page=1" class="page-link">Первая</a>
+                <a href="/topic/{{ topic.id }}?page={{ current_page - 1 }}" class="page-link">← Назад</a>
+            {% endif %}
+
+            {% for page_num in range(1, total_pages + 1) %}
+                {% if page_num == current_page %}
+                    <span class="current-page">{{ page_num }}</span>
+                {% elif page_num >= current_page - 2 and page_num <= current_page + 2 %}
+                    <a href="/topic/{{ topic.id }}?page={{ page_num }}" class="page-link">{{ page_num }}</a>
+                {% elif page_num == 1 or page_num == total_pages %}
+                    <a href="/topic/{{ topic.id }}?page={{ page_num }}" class="page-link">{{ page_num }}</a>
+                {% elif page_num == current_page - 3 or page_num == current_page + 3 %}
+                    <span class="ellipsis">...</span>
+                {% endif %}
+            {% endfor %}
+
+            {% if current_page < total_pages %}
+                <a href="/topic/{{ topic.id }}?page={{ current_page + 1 }}" class="page-link">Вперед →</a>
+                <a href="/topic/{{ topic.id }}?page={{ total_pages }}" class="page-link">Последняя</a>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <div class="messages">
+            {% for message in messages %}
+            <div class="message">
+                <div class="message-header">
+                    <span class="message-author">{{ message.author }}</span>
+                    <span class="message-time">{{ message.timestamp.strftime('%d.%m.%Y в %H:%M') }}</span>
+                </div>
+                <div class="message-content">
+                    {{ message.formatted_text | safe }}
+                </div>
+
+                {% if message.attachments %}
+                <div class="attachments">
+                    <strong>Прикрепленные файлы:</strong>
+                    <ul>
+                        {% for attachment in message.attachments %}
+                        <li>
+                            <a href="/download/{{ attachment.filename }}" class="attachment-link" target="_blank">
+                                📎 {{ attachment.original_filename }}
+                            </a>
+                            <small>({{ attachment.upload_time.strftime('%Y-%m-%d %H:%M') }})</small>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            {% else %}
+            <div class="no-messages">
+                <p>В этой теме пока нет сообщений.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if total_pages > 1 %}
+        <div class="pagination">
+            {% if current_page > 1 %}
+                <a href="/topic/{{ topic.id }}?page=1" class="page-link">Первая</a>
+                <a href="/topic/{{ topic.id }}?page={{ current_page - 1 }}" class="page-link">← Назад</a>
+            {% endif %}
+
+            {% for page_num in range(1, total_pages + 1) %}
+                {% if page_num == current_page %}
+                    <span class="current-page">{{ page_num }}</span>
+                {% elif page_num >= current_page - 2 and page_num <= current_page + 2 %}
+                    <a href="/topic/{{ topic.id }}?page={{ page_num }}" class="page-link">{{ page_num }}</a>
+                {% elif page_num == 1 or page_num == total_pages %}
+                    <a href="/topic/{{ topic.id }}?page={{ page_num }}" class="page-link">{{ page_num }}</a>
+                {% elif page_num == current_page - 3 or page_num == current_page + 3 %}
+                    <span class="ellipsis">...</span>
+                {% endif %}
+            {% endfor %}
+
+            {% if current_page < total_pages %}
+                <a href="/topic/{{ topic.id }}?page={{ current_page + 1 }}" class="page-link">Вперед →</a>
+                <a href="/topic/{{ topic.id }}?page={{ total_pages }}" class="page-link">Последняя</a>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <div class="message-form">
+            <h3>Добавить сообщение</h3>
+            <form method="POST" action="/topic/{{ topic.id }}/reply" enctype="multipart/form-data">
+                <textarea name="text" required placeholder="Текст сообщения"></textarea>
+                <div class="formatting-hint">
+                    <small>Поддерживается: **жирный**, *курсив*, ~~зачеркнутый~~, `код`, [ссылки](http://example.com), таблицы</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="files">Прикрепить файлы:</label>
+                    <input type="file" id="files" name="files" multiple>
+                    <div class="formatting-hint">
+                        <small>Можно выбрать несколько файлов. Разрешены: txt, pdf, png, jpg, jpeg, gif, doc, docx, zip, rar, mp3, mp4, avi, mov. Макс. размер: 16MB.</small>
+                    </div>
+                </div>
+
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

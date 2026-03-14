@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Форум</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Форум</h1>
+
+        <div class="user-info">
+            {% if user.type == 'guest' %}
+                <p>Вы вошли как <strong>Гость</strong>.
+                   <a href="/login">Войдите</a> или <a href="/register">зарегистрируйтесь</a> чтобы писать сообщения.</p>
+            {% else %}
+                <p>Вы вошли как <strong>{{ user.username }}</strong>.
+                   <a href="/profile">Профиль</a> | <a href="/logout">Выйти</a></p>
+            {% endif %}
+        </div>
+
+        <div class="forum-actions">
+            <a href="/new_topic.html" class="button">Создать новую тему</a>
+            <a href="/formatting_help.html" class="button" target="_blank">Справка по форматированию</a>
+        </div>
+
+        <div class="search-form">
+            <form method="GET" action="/">
+                <input type="text" name="q" value="{{ search_query }}" placeholder="Поиск по темам и сообщениям...">
+                <button type="submit">Найти</button>
+                {% if search_query %}
+                <a href="/" class="button">Показать все темы</a>
+                {% endif %}
+            </form>
+        </div>
+
+        <h2>
+            {% if search_query %}
+            Результаты поиска для "{{ search_query }}" (найдено: {{ topics|length }})
+            {% else %}
+            Темы форума (всего: {{ topics|length }})
+            {% endif %}
+        </h2>
+
+        {% if topics %}
+        <div class="topics-list">
+            {% for topic in topics %}
+            <div class="topic-item">
+                <div class="topic-header">
+                    <h3><a href="/topic/{{ topic.id }}">{{ topic.title }}</a></h3>
+                    <div class="topic-meta">
+                        <span class="author">Автор: <strong>{{ topic.author }}</strong></span>
+                        <span class="created">Создана: {{ topic.created_at }}</span>
+                        <span class="messages-count">Сообщений: {{ topic.messages_count }}</span>
+                    </div>
+                </div>
+                <div class="topic-preview">
+                    {{ topic.first_message_preview }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-results">
+            {% if search_query %}
+            <p>По запросу "{{ search_query }}" ничего не найдено.</p>
+            {% else %}
+            <p>Пока нет ни одной темы. <a href="/new_topic.html">Создайте первую!</a></p>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
